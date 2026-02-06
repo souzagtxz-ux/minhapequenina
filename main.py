@@ -3,12 +3,26 @@ import streamlit as st
 # Configuração da página
 st.set_page_config(page_title="Para Minha Pequena", page_icon="❤️", layout="centered")
 
-# --- ESTILO CSS (Corações e Design) ---
+# --- ESTILO CSS (Corações, Design e Efeito Glow) ---
 st.markdown("""
     <style>
     .stApp {
         background-color: #fff5f5;
     }
+    
+    /* Efeito de Glow/Sombra no texto para destacar do fundo */
+    .glow-text {
+        color: white;
+        text-shadow: 0px 0px 8px rgba(0, 0, 0, 0.8), 0px 0px 2px rgba(0, 0, 0, 1);
+        font-size: 1.2rem;
+        line-height: 1.6;
+    }
+    
+    h1, h2, h3 {
+        color: #ff4b4b !important;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+    }
+
     @keyframes snowflakes {
         0% { top: -10%; }
         100% { top: 100%; }
@@ -25,6 +39,7 @@ st.markdown("""
         animation-iteration-count: infinite;
         animation-timing-function: linear;
     }
+    
     .romantic-card {
         background: white;
         padding: 25px;
@@ -35,7 +50,7 @@ st.markdown("""
         font-family: 'Georgia', serif;
         margin-top: 20px;
     }
-    /* Estilo para o botão ficar bonitinho */
+
     div.stButton > button:first-child {
         background-color: #ff4b4b;
         color: white;
@@ -43,6 +58,7 @@ st.markdown("""
         padding: 10px 25px;
         border: none;
         font-size: 18px;
+        box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
     }
     </style>
 
@@ -60,25 +76,26 @@ if 'aberto' not in st.session_state:
 
 st.title("💌 Você recebeu uma mensagem...")
 
-# Só mostra o botão se a cartinha não estiver aberta
 if not st.session_state.aberto:
     st.write("Tem algo especial guardado aqui para você, minha princesa.")
     if st.button("Abrir Cartinha"):
         st.session_state.aberto = True
-        st.rerun() # Recarrega a página para mostrar o conteúdo
+        st.rerun()
 
 # --- CONTEÚDO REVELADO ---
 if st.session_state.aberto:
-    st.balloons() # Efeito de balões ao abrir
+    st.balloons()
     
+    # Texto da cartinha com a classe glow-text
     st.markdown("""
-    ### Minha Pequena,
-    Escrevi isso para tentar colocar em palavras o que sinto por você. 
-    Desde que você chegou, tudo ficou mais colorido e cheio de vida. 
-    Você é a minha **pequenina** favorita, a dona do meu sorriso e o meu porto seguro.
-    
+    <div class="glow-text">
+    <h3>Minha Pequena,</h3>
+    Escrevi isso para tentar colocar em palavras o que sinto por você. <br>
+    Desde que você chegou, tudo ficou mais colorido e cheio de vida. <br>
+    Você é a minha <b>pequenina</b> favorita, a dona do meu sorriso e o meu porto seguro. <br><br>
     Prometo estar aqui por você, hoje e sempre, minha princesa.
-    """)
+    </div>
+    """, unsafe_allow_html=True)
     
     st.write("---")
     
