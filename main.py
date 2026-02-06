@@ -48,7 +48,7 @@ st.markdown("""
     <div class="heart" style="left:60%; animation-delay:3s;">❤️</div>
     <div class="heart" style="left:75%; animation-delay:0.5s;">❤️</div>
     <div class="heart" style="left:90%; animation-delay:1.5s;">❤️</div>
-    """, unsafe_allow_stdio=True)
+    """, unsafe_allow_html=True) # <-- O ERRO ESTAVA AQUI, AGORA ESTÁ CERTO!
 
 # --- CONTEÚDO DO SITE ---
 
@@ -65,7 +65,7 @@ with st.expander("Clique aqui para abrir sua cartinha, minha princesa..."):
     
     Prometo estar aqui por você, hoje e sempre.
     """)
-    st.balloons() # Efeito extra de celebração ao abrir
+    st.balloons() 
 
 st.write("---")
 
